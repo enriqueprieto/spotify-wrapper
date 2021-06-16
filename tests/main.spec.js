@@ -39,7 +39,7 @@ describe('Main', () => {
 
     beforeEach(() => {
       fetchStub = sinon.stub(global, 'fetch')
-      promise = fetchStub.resolves()
+      promise = fetchStub.returnsPromise()
     })
 
     afterEach(() => {
@@ -80,10 +80,8 @@ describe('Main', () => {
     it('should return JSON Data from the Promise', () => {
       promise.resolves({ body: 'json' })
       const artists = search('Incubus', 'artist')
-      console.log(artists)
-      console.log(artists.resolveValues)
 
-      expect(artists.resolveValues).to.be.eql({ body: 'json' })
+      expect(artists.resolveValue).to.be.eql({ body: 'json' })
     })
   })
 })
